@@ -29,7 +29,6 @@ jobs:
       - name: Build package
         uses: ros-tooling/action-ros-ci@v0.2
         with:
-          package-name: ALL
           target-ros1-distro: noetic
           vcs-repo-file-url: /tmp/deps.repos
 
