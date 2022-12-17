@@ -34,6 +34,7 @@ jobs:
       - run: rm -rf ros_lib/*
       - name: Build rosserial_arduino library
         run: |
+          sudo apt install ros-noetic-rosserial-arduino
           source ./devel/setup.sh
           rosrun rosserial_arduino make_libraries.py dest
           mv dest/* ros_lib/
