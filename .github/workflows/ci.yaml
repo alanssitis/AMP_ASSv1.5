@@ -24,12 +24,12 @@ jobs:
       - name: Generate deps.repos file
         run: |
           sudo apt install python3-rosinstall-generator &&
-          rosinstall_generator serial_packet --rosdistro noetic \
+          rosinstall_generator ALL --rosdistro noetic \
           --deps-only --deps --upstream-development > /tmp/deps.repos
       - name: Build package
         uses: ros-tooling/action-ros-ci@v0.2
         with:
-          package-name: serial_packet
+          package-name: ALL
           target-ros1-distro: noetic
           vcs-repo-file-url: /tmp/deps.repos
 
