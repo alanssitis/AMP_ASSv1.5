@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
-        with:
-          submodules: true
       - name: Setup ROS tooling
         uses: ros-tooling/setup-ros@v0.3
         with:
