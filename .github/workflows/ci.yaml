@@ -17,20 +17,17 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v3
+        with:
+          submodules: true
       - name: Setup ROS tooling
         uses: ros-tooling/setup-ros@v0.3
         with:
           required-ros-distributions: noetic
-      - name: Generate deps.repos file
-        run: |
-          sudo apt install python3-rosinstall-generator &&
-          rosinstall_generator ALL --rosdistro noetic \
-          --deps-only --deps --upstream-development > /tmp/deps.repos
-      - name: Build package
-        uses: ros-tooling/action-ros-ci@v0.2
-        with:
-          target-ros1-distro: noetic
-          vcs-repo-file-url: /tmp/deps.repos
+      - run: rosdep update
+      - name: Install dependencies
+        run: source /opt/ros/noetic/setup.sh && rosdep install --from-paths src -iry
+      - name: Build packages
+        run: source /opt/ros/noetic/setup.sh && catkin_make
 
   build-cli:
     strategy:
