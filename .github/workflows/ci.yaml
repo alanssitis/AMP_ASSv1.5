@@ -19,6 +19,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Setup ROS tooling
         uses: ros-tooling/setup-ros@v0.3
+        with:
+          required-ros-distributions: noetic
       - name: Generate deps.repos file
         run: |
           sudo apt install python3-rosinstall-generator &&
